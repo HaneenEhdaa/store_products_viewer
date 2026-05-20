@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:store_products_viewer/features/products/data/models/product_model.dart';
 
@@ -10,7 +8,7 @@ class ProductService {
     List<ProductModel> products = [];
     try {
       var response = await Dio().get(endpoint);
-      var data = response.data;
+      var data = response.data['products'];
       data.forEach((json) {
         ProductModel product = ProductModel.fromJson(json);
         products.add(product);

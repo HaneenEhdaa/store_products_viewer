@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_products_viewer/features/products/viewmodels/cubits/product/product_cubit.dart';
 import 'package:store_products_viewer/features/products/views/product_view.dart';
 
 void main() {
@@ -18,7 +20,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ProductView(),
+      home: BlocProvider(
+        create: (context) => ProductCubit()..getMyProduct(),
+        child: const ProductView(),
+      ),
     );
   }
 }

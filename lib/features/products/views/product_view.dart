@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_products_viewer/features/products/data/models/product_model.dart';
-import 'package:store_products_viewer/features/products/data/services/product_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_products_viewer/features/products/viewmodels/cubits/product/product_cubit.dart';
 
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
@@ -10,31 +10,36 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
-  List<ProductModel> products = [];
-  getMyProduct() async {
-    products = await ProductService().getProduct();
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getMyProduct();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-          itemCount: products.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(
-                products[index].title,
-                style: TextStyle(color: Colors.amber),
-              ),
-            );
-          }),
+      body: BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
+        if (state is ProductLoading) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Colors.redAccent,
+            ),
+          );
+        }
+        if (state is ProductLoaded) {
+          return ListView.builder(
+              itemCount: state.productData.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(
+                    state.productData[index].title,
+                    style: TextStyle(color: Colors.amber),
+                  ),
+                );
+              });
+        }
+        if (state is ProductError) {
+          return Center(
+            child: Text(state.errorMsg),
+          );
+        }
+        return Container();
+      }),
     );
   }
 }
