@@ -1,19 +1,29 @@
-# store_products_viewer
+# 🛍️ Store Products Viewer
 
-A new Flutter project.
+A modern Flutter products viewer application built using **Clean Architecture** principles and **Cubit State Management**.  
+The app fetches products from a REST API and displays them in a responsive and user-friendly UI.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+# ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- Fetch products from API using Dio
+- Display products in responsive GridView
+- Product card contains:
+  - Product image
+  - Product title
+  - Product description
+  - Discounted price
+  - Original price with line-through
+  - Product rating
+  - Favorite button
+  - Add to cart button
+- Snackbar feedback when adding products to cart
+- Responsive UI using MediaQuery
+- Clean Architecture structure
+- State management using Cubit
+- Loading and error handling
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-<img width="2348" height="1799" alt="products_list_screens" src="https://github.com/user-attachments/assets/9b4a2912-97c5-41be-be8b-a07ca51db5f1" />
 
